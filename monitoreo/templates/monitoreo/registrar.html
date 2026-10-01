@@ -2,5 +2,5 @@
 {% block title %}Registrar medición{% endblock %}
 {% block content %}
 <div class="page-heading"><p class="eyebrow">NUEVA LECTURA</p><h1>Registrar medición</h1><p>Selecciona un sensor e ingresa el valor observado.</p></div>
-<section class="panel form-panel"><form method="post">{% csrf_token %}{{ form.as_p }}<p class="muted">La fecha y hora se asignan automáticamente. Solo se admiten sensores activos.</p><div class="actions"><button type="submit">Guardar medición</button><a href="{% url 'monitoreo:historico' %}">Cancelar</a></div></form></section>
+<section class="panel form-panel"><form method="post">{% csrf_token %}{{ form.as_p }}<p class="muted">La fecha y hora se asignan automáticamente. Solo se admiten sensores activos.</p><p class="muted">Las mediciones de humedad inferiores al {{ umbral_humedad_baja }} % generan una alerta de humedad del suelo baja.</p><div class="actions"><button type="submit">Guardar medición</button><a href="{% url 'monitoreo:historico' %}">Cancelar</a></div></form></section>
 {% endblock %}

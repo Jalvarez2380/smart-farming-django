@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
@@ -31,7 +32,9 @@ def registrar_medicion(request):
         form.save()
         messages.success(request, 'Medición registrada correctamente.')
         return redirect('monitoreo:historico')
-    return render(request, 'monitoreo/registrar.html', {'form': form})
+    return render(request, 'monitoreo/registrar.html', {
+        'form': form, 'umbral_humedad_baja': settings.UMBRAL_HUMEDAD_BAJA,
+    })
 
 
 def historico(request):
