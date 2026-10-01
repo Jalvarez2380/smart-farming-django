@@ -1,0 +1,9 @@
+<div class="table-scroll"><table>
+  <thead><tr><th scope="col">Sensor / tipo</th><th scope="col">Parcela</th><th scope="col">Valor</th><th scope="col">Fecha y hora</th><th scope="col">Alerta</th></tr></thead>
+  <tbody>{% for medicion in mediciones %}<tr>
+    <td><strong>{{ medicion.sensor.codigo }}</strong><small>{{ medicion.sensor.get_tipo_display }}</small></td>
+    <td>{{ medicion.sensor.parcela.nombre }}</td><td class="reading">{{ medicion.valor }} <span>{{ medicion.sensor.unidad }}</span></td>
+    <td>{{ medicion.fecha_hora|date:'d/m/Y H:i' }}</td>
+    <td>{% if medicion.humedad_baja %}<span class="badge warning">Humedad del suelo baja</span>{% else %}<span class="muted">Sin alerta de humedad</span>{% endif %}</td>
+  </tr>{% empty %}<tr><td colspan="5" class="empty">No hay mediciones para mostrar. Registra una lectura o ajusta los filtros.</td></tr>{% endfor %}</tbody>
+</table></div>

@@ -1,0 +1,6 @@
+{% extends 'monitoreo/base.html' %}
+{% block title %}Parcelas{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">TERRITORIO</p><h1>Parcelas</h1><p>Áreas de cultivo que forman parte del monitoreo.</p></div>
+<div class="cards">{% for parcela in parcelas %}<article class="panel plot"><span class="badge">Parcela {{ parcela.pk }}</span><h2>{{ parcela.nombre }}</h2><p><strong>Ubicación:</strong> {{ parcela.ubicacion }}</p><p>{{ parcela.descripcion|default:'Sin descripción.' }}</p><a href="{% url 'monitoreo:historico' %}?parcela={{ parcela.pk }}">Consultar mediciones →</a></article>{% empty %}<div class="panel empty">Todavía no hay parcelas. Puedes crearlas en la administración.</div>{% endfor %}</div>
+{% endblock %}

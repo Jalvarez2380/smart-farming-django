@@ -1,0 +1,13 @@
+{% extends 'monitoreo/base.html' %}
+{% block content %}
+<section class="hero">
+  <div><p class="eyebrow">AGRICULTURA CON DATOS</p><h1>Smart Farming</h1><p>Una mirada clara a tus parcelas y sus condiciones ambientales.</p></div>
+  <a class="button" href="{% url 'monitoreo:registrar' %}">+ Registrar medición</a>
+</section>
+<section class="stats" aria-label="Resumen del monitoreo">
+  <article class="stat"><span>Parcelas</span><strong>{{ total_parcelas }}</strong><a href="{% url 'monitoreo:parcelas' %}">Ver parcelas →</a></article>
+  <article class="stat"><span>Sensores</span><strong>{{ total_sensores }}</strong><a href="{% url 'monitoreo:sensores' %}">Ver sensores →</a></article>
+  <article class="stat"><span>Mediciones</span><strong>{{ total_mediciones }}</strong><a href="{% url 'monitoreo:historico' %}">Explorar histórico →</a></article>
+</section>
+<section class="panel"><div class="section-heading"><div><h2>Últimas mediciones</h2><p>Las ocho lecturas más recientes de tus sensores.</p></div><a href="{% url 'monitoreo:historico' %}">Ver todas →</a></div>{% include 'monitoreo/tabla_mediciones.html' %}</section>
+{% endblock %}

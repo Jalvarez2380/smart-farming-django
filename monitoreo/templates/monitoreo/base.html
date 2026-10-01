@@ -1,0 +1,27 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Smart Farming{% endblock %} · Monitoreo agrícola</title>
+  <link rel="stylesheet" href="{% static 'monitoreo/css/styles.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{% url 'monitoreo:dashboard' %}"><span class="brand-icon" aria-hidden="true">↗</span> Smart Farming</a>
+    <nav aria-label="Navegación principal">
+      <a href="{% url 'monitoreo:dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' %}aria-current="page"{% endif %}>Resumen</a>
+      <a href="{% url 'monitoreo:parcelas' %}" {% if request.resolver_match.url_name == 'parcelas' %}aria-current="page"{% endif %}>Parcelas</a>
+      <a href="{% url 'monitoreo:sensores' %}" {% if request.resolver_match.url_name == 'sensores' %}aria-current="page"{% endif %}>Sensores</a>
+      <a href="{% url 'monitoreo:historico' %}" {% if request.resolver_match.url_name == 'historico' %}aria-current="page"{% endif %}>Histórico</a>
+      <a href="{% url 'monitoreo:registrar' %}" {% if request.resolver_match.url_name == 'registrar' %}aria-current="page"{% endif %}>Registrar medición</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    {% for message in messages %}<div class="message" role="status">{{ message }}</div>{% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>Smart Farming · Monitoreo agrícola IoT <span>Hora local de Ecuador continental</span></footer>
+</body>
+</html>

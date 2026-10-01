@@ -1,0 +1,6 @@
+{% extends 'monitoreo/base.html' %}
+{% block title %}Sensores{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">INSTRUMENTACIÓN</p><h1>Sensores</h1><p>Consulta los dispositivos asociados a cada parcela.</p></div>
+<section class="panel table-scroll"><table><thead><tr><th scope="col">Código</th><th scope="col">Tipo</th><th scope="col">Parcela</th><th scope="col">Unidad</th><th scope="col">Estado</th></tr></thead><tbody>{% for sensor in sensores %}<tr><td><strong>{{ sensor.codigo }}</strong></td><td>{{ sensor.get_tipo_display }}</td><td>{{ sensor.parcela.nombre }}</td><td>{{ sensor.unidad }}</td><td><span class="badge {% if sensor.estado == 'INACTIVO' %}inactive{% endif %}">{{ sensor.get_estado_display }}</span></td></tr>{% empty %}<tr><td colspan="5" class="empty">Todavía no hay sensores. Puedes crearlos en la administración.</td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}

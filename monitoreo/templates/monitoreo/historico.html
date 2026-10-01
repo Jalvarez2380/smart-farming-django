@@ -1,0 +1,7 @@
+{% extends 'monitoreo/base.html' %}
+{% block title %}Histórico{% endblock %}
+{% block content %}
+<div class="page-heading"><p class="eyebrow">REGISTRO AMBIENTAL</p><h1>Histórico de mediciones</h1><p>Explora las lecturas, de la más reciente a la más antigua.</p></div>
+<section class="panel"><form method="get" class="filters">{{ form.as_p }}<button type="submit">Filtrar</button><a href="{% url 'monitoreo:historico' %}">Limpiar</a></form>{% include 'monitoreo/tabla_mediciones.html' %}
+{% if page_obj.paginator.num_pages > 1 %}<nav class="pagination" aria-label="Paginación">{% if page_obj.has_previous %}<a href="?{{ filtros }}&amp;page={{ page_obj.previous_page_number }}">← Anterior</a>{% endif %}<span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>{% if page_obj.has_next %}<a href="?{{ filtros }}&amp;page={{ page_obj.next_page_number }}">Siguiente →</a>{% endif %}</nav>{% endif %}</section>
+{% endblock %}
